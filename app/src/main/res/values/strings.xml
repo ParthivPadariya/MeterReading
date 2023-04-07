@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">MeterReading</string>
+    <string name="title_activity_login_page">loginPage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_close">Close</string>
+
+    <string-array name="array_indian_state">
+        <item>Select Your State</item>
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Ladakh</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Puducherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttarakhand</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+    </string-array>
+
+    <string-array name="waterBoard">
+        <item>Select Water Board</item>
+        <item>Banglore Water Supply and Sewerage Bord (BWSSB)</item>
+        <item>Chandrapur Municipal Corporation</item>
+        <item>Chennai Metropolitan Water Supply And Sewerage Board</item>
+        <item>Cidco Bill Payment -Water</item>
+        <item>City Municipal Council -Ilkal</item>
+        <item>Delhi Development Authority (DDA) - Water</item>
+        <item>Delhi Jal Board (DJB)</item>
+        <item>Vijayapura Water Board</item>
+        <item>Maharashtra Jeevan Pradhikaran 105Vrr Amravati</item>
+        <item>Department of Public Health Engineering-Water, Mizoram</item>
+        <item>Haryana Urban Development Authority</item>
+        <item>Kerala Water Authority (KWA) - Water</item>
+    </string-array>
+</resources>

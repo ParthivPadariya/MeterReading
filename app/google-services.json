@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "877547177911",
+    "firebase_url": "https://meterreading-165ab-default-rtdb.firebaseio.com",
+    "project_id": "meterreading-165ab",
+    "storage_bucket": "meterreading-165ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877547177911:android:c91b8bece5420a0ca84a32",
+        "android_client_info": {
+          "package_name": "com.example.meterreading"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877547177911-s008agr9vvph42kp6jhb21bs30kp5jp2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meterreading",
+            "certificate_hash": "e6e70fe25a28018a1221144d17a6d83337ae91b5"
+          }
+        },
+        {
+          "client_id": "877547177911-146qf6ki7o634rk8ofr1l1j602lp6q4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv8mbm5V_RqlshABbuZnnBYFlZ2-UTzGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877547177911-146qf6ki7o634rk8ofr1l1j602lp6q4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
