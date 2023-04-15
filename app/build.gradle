@@ -67,9 +67,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision:15.0.0'
 
     implementation 'com.github.krokyze:ucropnedit:2.2.6-2'
-    //noinspection GradleCompatible
-    implementation 'com.android.support:design:27.1.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 
 
 }

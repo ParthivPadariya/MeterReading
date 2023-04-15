@@ -30,6 +30,7 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+import com.yalantis.ucrop.UCrop;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
@@ -40,6 +41,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.List;
+import java.util.UUID;
 
 public class waterBill extends AppCompatActivity {
 
@@ -78,7 +80,7 @@ public class waterBill extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 bord = adapterView.getItemAtPosition(i).toString();
 //                select_Bord.setText(item);
-                Toast.makeText(waterBill.this, bord, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(waterBill.this, bord, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -121,8 +123,20 @@ public class waterBill extends AppCompatActivity {
                     File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
                     currentPhotoPath = imageFile.getAbsolutePath();
 
+                    String desi_uri = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
+
                     System.out.println(currentPhotoPath);
                     Uri imageUri = FileProvider.getUriForFile(waterBill.this,"com.example.meterreading.fileprovider",imageFile);
+
+                    UCrop.Options options = new UCrop.Options();
+
+                    UCrop.of(imageUri,Uri.fromFile(new File(getCacheDir(),desi_uri)))
+                            .withOptions(options)
+                            .withAspectRatio(0,0)
+                            .useSourceImageAspectRatio()
+                            .withMaxResultSize(2000,2000)
+                            .start(waterBill.this);
+
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                     startActivityForResult(intent,1);
@@ -134,74 +148,7 @@ public class waterBill extends AppCompatActivity {
         });
     }
 
-    public void classifyimage(Bitmap bitmap){
-//        try {
-//            Model1 model = Model1.newInstance(getApplicationContext());
-//
-//            // Creates inputs for reference.
-//            TensorImage image = TensorImage.fromBitmap(bitmap);
-//
-//            // Runs model inference and gets result.
-//            Model1.Outputs outputs = model.process(image);
-//            Model1.DetectionResult detectionResult = outputs.getDetectionResultList().get(0);
-//
-//            // Gets result from DetectionResult.
-//            float location = detectionResult.getScoreAsFloat();
-//            RectF category = detectionResult.getLocationAsRectF();
-//            String score = detectionResult.getCategoryAsString();
-//            ans.setText(score);
-//            // Releases model resources if no longer used.
-//            model.close();
-//        } catch (IOException e) {
-//            // TODO Handle the exception
-//        }
 
-/*
-        try {
-            BestFp16 model = BestFp16.newInstance(getApplicationContext());
-
-            // Creates inputs for reference.
-            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 416, 416, 3}, DataType.FLOAT32);
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4* imageSize * imageSize * 3);
-            byteBuffer.order(ByteOrder.nativeOrder());
-
-            int[] intValue = new int[imageSize*imageSize];
-            bitmap.getPixels(intValue, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-            int pixel = 0;
-            for (int i = 0; i<imageSize; i++){
-                for (int j = 0; j<imageSize; j++){
-                    int val = intValue[pixel++];
-                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f / 1));
-                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f / 1));
-                    byteBuffer.putFloat((val >> 0xFF)  * (1.f / 1));
-
-                }
-            }
-
-            inputFeature0.loadBuffer(byteBuffer);
-
-            // Runs model inference and gets result.
-            BestFp16.Outputs outputs = model.process(inputFeature0);
-            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-
-//            float[] confidence = outputFeature0.getFloatArray();
-//            int maxPos = 0;
-//            float maxConfidence = 0;
-//            for (int i = 0; i<confidence.length;i++){
-//                if(confidence[i] > maxConfidence){
-//                    maxConfidence = confidence[i];
-//                    maxPos = i;
-//                }
-//            }
-//            String[] classes = {"0","1","2","3","4","5","6","7","8","9"};
-//            ans.setText(classes[maxPos]);
-            // Releases model resources if no longer used.
-            model.close();
-        } catch (IOException e) {
-            // TODO Handle the exception
-        }
-*/
-    }
     private void process_text(FirebaseVisionText firebaseVisionText){
         List<FirebaseVisionText.Block> blocks = firebaseVisionText.getBlocks();
         if(blocks.size() == 0){
@@ -228,9 +175,6 @@ public class waterBill extends AppCompatActivity {
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-//            imgCamera.setBackground(null);
-//            imgCamera.setImageBitmap(bitmap);
-//            classifyimage(bitmap);
 
             if (bitmap==null){
                 Toast.makeText(this, "Bitmap is null", Toast.LENGTH_SHORT).show();

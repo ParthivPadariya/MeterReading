@@ -93,7 +93,7 @@ public class ForgotPassword extends AppCompatActivity {
                             databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    // check username and password exist in database
+
                                     if(snapshot.hasChild(user)){
                                         // password exist
                                         final String getEmail = snapshot.child(user).child("email").getValue(String.class);

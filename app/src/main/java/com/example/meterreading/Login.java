@@ -162,6 +162,7 @@ public class Login extends AppCompatActivity {
             }
         });
 */
+
         login_google = findViewById(R.id.loginbtn2);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

@@ -32,6 +32,8 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+import com.yalantis.ucrop.UCrop;
+
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
@@ -42,6 +44,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class electicityBill extends AppCompatActivity {
 
@@ -136,8 +139,22 @@ public class electicityBill extends AppCompatActivity {
                     File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
                     currentPhotoPath = imageFile.getAbsolutePath();
 
+                    String desi_uri = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
+
+
                     System.out.println(currentPhotoPath);
                     Uri imageUri = FileProvider.getUriForFile(electicityBill.this,"com.example.meterreading.fileprovider",imageFile);
+
+                    UCrop.Options options = new UCrop.Options();
+
+                    UCrop.of(imageUri,Uri.fromFile(new File(getCacheDir(),desi_uri)))
+                            .withOptions(options)
+                            .withAspectRatio(0,0)
+                            .useSourceImageAspectRatio()
+                            .withMaxResultSize(2000,2000)
+                            .start(electicityBill.this);
+
+
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                     startActivityForResult(intent,1);
@@ -179,9 +196,6 @@ public class electicityBill extends AppCompatActivity {
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-//            imgCamera.setBackground(null);
-//            imgCamera.setImageBitmap(bitmap);
-//            classifyimage(bitmap);
 
                 if (bitmap==null){
                     Toast.makeText(this, "Bitmap is null", Toast.LENGTH_SHORT).show();
